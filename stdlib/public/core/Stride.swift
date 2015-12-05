@@ -202,11 +202,11 @@ public struct StrideThroughGenerator<Element : Strideable> : GeneratorType {
     if done {
       return nil
     }
-    if stride > 0 ? current >= end : current <= end {
-      if current == end {
-        done = true
-        return current
-      }
+    if current == end {
+      done = true
+      return current
+    }
+    guard stride > 0 && current < end || stride < 0 && current > end else {
       return nil
     }
     let ret = current
